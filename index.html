@@ -1,0 +1,601 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEEPFRAME — Digital Experience</title>
+
+    
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        min-height: 100vh;
+        background: #081521;
+        color: #EAF4FA;
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        padding: 40px 7%;
+    }
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    header h2 {
+        font-size: 20px;
+        letter-spacing: 4px;
+    }
+
+    header p {
+        color: #a0e7ff;
+        font-size: 11px;
+        letter-spacing: 2px;
+    }
+
+    main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    max-width: 750px;
+    width: 100%;
+    margin: auto;
+}
+
+    .status {
+        color: #a3daec;
+        font-size: 12px;
+        letter-spacing: 3px;
+        margin-bottom: 28px;
+    }
+
+    main h1 {
+        font-size: clamp(38px, 6vw, 76px);
+        line-height: 1.1;
+        margin-bottom: 24px;
+    }
+
+    main > p:not(.status) {
+        color: #b3d8f3;
+        font-size: 17px;
+        margin-bottom: 35px;
+    }
+
+    button {
+        background: #448daf;
+        color: #021527;
+        border: none;
+        padding: 16px 24px;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: #EAF4FA;
+        transform: translateY(-3px);
+    }
+
+    footer {
+        color: #526A7B;
+        font-size: 10px;
+        letter-spacing: 3px;
+        border-top: 1px solid #133853;
+        padding-top: 20px;
+    }
+
+    
+    body {
+        position: relative;
+        overflow: hidden;
+    }
+
+
+    main,
+    header,
+    footer {
+        position: relative;
+        z-index: 1;
+    }
+
+    
+    #login {
+        margin: auto 0;
+        width: 100%;
+        max-width: 500px;
+    }
+
+    #login h1 {
+        font-size: clamp(36px, 5vw, 58px);
+        margin: 20px 0;
+    }
+
+    #login > p:not(.status) {
+        color: #91A8B8;
+        margin-bottom: 28px;
+    }
+
+    #login form {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    #login label {
+        font-size: 13px;
+        color: #B8CBD7;
+        margin-top: 8px;
+    }
+
+    #login input {
+        width: 100%;
+        padding: 15px;
+        background: #101F2D;
+        border: 1px solid #294252;
+        color: white;
+        outline: none;
+    }
+
+    #login input:focus {
+        border-color: #78C8E3;
+    }
+
+    #login button {
+        margin-top: 16px;
+    }
+
+
+    body {
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+    }
+
+
+
+    .ocean-background {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        background:
+            linear-gradient(
+                90deg,
+                #030A12 0%,
+                rgba(3, 10, 18, 0.96) 32%,
+                rgba(3, 10, 18, 0.55) 65%,
+                rgba(3, 10, 18, 0.2) 100%
+            ),
+            url("ocean.jpg.avif") center / cover no-repeat;
+    }
+
+    
+#error-screen {
+    margin: auto;
+    width: 100%;
+    max-width: 750px;
+    text-align: center;
+    align-self: center;
+}
+
+body:has(#error-screen[style*="block"]) .ocean-background {
+    display: none;
+}
+
+#error-screen .status {
+    color: #ab0d35;
+}
+
+#error-screen h1 {
+    color: #F2E8FF;
+    font-size: clamp(34px, 6vw, 68px);
+    margin: 20px 0;
+    text-shadow: 3px 0 #ab0d35, -3px 0 #55D6FF;
+}
+
+#error-screen > p:not(.status) {
+    color: #BDA9D8;
+    margin-bottom: 32px;
+}
+
+body {
+    justify-content: center;
+}
+
+#login {
+    align-self: center;
+    text-align: center;
+}
+
+#login form {
+    text-align: left;
+}
+
+header,
+footer {
+    z-index: 1;
+}
+
+#birthday-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    background: #081521;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 30px 20px;
+    overflow-y: auto;
+}
+
+#birthday-screen .birthday-photo {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #78C8E3;
+    margin-bottom: 30px;
+}
+
+#birthday-screen h1 {
+    font-size: clamp(30px, 5vw, 52px);
+    margin-bottom: 20px;
+}
+
+#birthday-screen p {
+    color: #B3D8F3;
+    line-height: 1.8;
+    margin-bottom: 10px;
+}
+
+
+/* Birthday surprise */
+
+#birthday-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    display: none;
+    overflow-y: auto;
+    background: #081521;
+    color: #EAF4FA;
+    padding: 45px 20px;
+    text-align: center;
+}
+
+.birthday-content {
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.birthday-photo {
+    display: block;
+    width: 190px;
+    height: 190px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #78C8E3;
+    margin: 0 auto 25px;
+}
+
+.birthday-tag {
+    color: #78C8E3;
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    direction: ltr;
+}
+
+#birthday-screen h1 {
+    font-size: clamp(27px, 5vw, 48px);
+    line-height: 1.3;
+    margin-bottom: 35px;
+    color: #EAF4FA;
+}
+
+.birthday-message {
+    text-align: center;
+    line-height: 2;
+    font-size: 17px;
+}
+
+.birthday-message p {
+    color: #C5D7E3;
+    margin-bottom: 24px;
+}
+
+
+.birthday-signature {
+    margin-top: 35px;
+    padding-top: 25px;
+    border-top: 1px solid #294252;
+    color: #ff3b4f !important;
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 1.9;
+    opacity: 0;
+    animation: fadeIn 1.5s ease 3s forwards;
+}
+
+
+
+
+@keyframes pageFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+main,
+#login,
+#error-screen,
+#birthday-screen {
+    animation: pageFadeIn 0.8s ease both;
+}
+
+
+.birthday-signature {
+    color: #b60e1f;
+    opacity: 0;
+    animation: fadeIn 1.5s ease forwards;
+    animation-delay: 3s;
+}
+
+.birthday-signature {
+    color: #84121d !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    animation: fadeIn 1.5s ease 3s both !important;
+}
+
+
+</style>
+
+</head>
+
+<body>
+
+
+<div class="ocean-background"></div>
+
+
+    <header>
+        <h2>DEEPFRAME</h2>
+        <p>DIGITAL EXPERIENCE · 001</p>
+    </header>
+
+    <main>
+        <p class="status">● SYSTEM ONLINE</p>
+
+        <h1>Welcome to the unknown.</h1>
+
+        <p>Some things are worth discovering.</p>
+
+        <button onclick="showLogin()">Explore the experience →</button>
+    </main>
+
+    
+<section id="login" style="display: none;">
+    <p class="status">AUTHENTICATION REQUIRED</p>
+    <h1>Identify yourself.</h1>
+    <p>Enter your credentials to continue.</p>
+
+    <form>
+        <label for="username">Username</label>
+        <input id="username" type="text" placeholder="Enter username">
+
+        <label for="password">Password</label>
+        <input id="password" type="password" placeholder="Enter password">
+
+        <button type="button" onclick="verifyLogin()">Verify credentials →</button>
+    </form>
+</section>
+
+
+<section id="error-screen" style="display: none;">
+    <p class="status">SYSTEM FAILURE // 001</p>
+    <h1>USER NOT RECOGNIZED</h1>
+    <p>Something wasn't supposed to happen.</p>
+    <button type="button" onclick="recoverSystem()">
+        TRY TO FIX IT →
+    </button>
+</section>
+
+    <footer>
+        PRIVATE DIGITAL ENVIRONMENT
+    </footer>
+
+    
+<script>
+    
+function animatePage(selector) {
+    const page = document.querySelector(selector);
+    page.style.animation = "none";
+    page.offsetHeight;
+    page.style.animation = "pageFadeIn 0.8s ease both";
+}
+
+function showLogin() {
+    document.querySelector("main").style.display = "none";
+    document.querySelector("#login").style.display = "block";
+    document.querySelector("footer").style.display = "none";
+
+    animatePage("#login");
+}
+
+function verifyLogin() {
+    const username = document.querySelector("#username").value;
+    const password = document.querySelector("#password").value;
+
+    if (username === "Ibraheem" && password === "281006") {
+        document.querySelector("#login").style.display = "none";
+        document.querySelector("#error-screen").style.display = "block";
+
+        animatePage("#error-screen");
+    } else {
+        alert("Invalid credentials. Please try again.");
+    }
+}
+
+function recoverSystem() {
+    document.querySelector("#error-screen").style.display = "none";
+    document.querySelector("#birthday-screen").style.display = "block";
+    
+
+    animatePage("#birthday-screen");
+    launchConfetti();
+}
+
+    
+</script>
+    
+        <section id="birthday-screen" dir="rtl">
+    <div class="birthday-content">
+
+        <img src="ibraheem.png.png" alt="Ibraheem" class="birthday-photo">
+
+
+        <h1 dir="ltr">HAPPYYY BIRTHDAYYY BRHOOOOM 🎂💙</h1>
+
+        <div class="birthday-message">
+
+            <p>
+                مش عارفة أعايدك طبيعي ولا أتهبل عليك كالعاده 😁
+                بس خلينا نكون ناس لطيفه اليوم 😂🤝🏻
+            </p>
+
+            <p>
+                كل عام وانتَ بخير صديقي المفضل، وإن شاء الله تكون هالسنه
+                من أحلى سنينك ومليانه راحه بال وفرح ونجاحات كتير
+                كتاااااار وأشياء حلوه بتستاهلها 🥹
+                يا رب تحقق فيها كل اللي بتتمناه وتوصل لكل اشي بتسعى إلو
+                وتضلك مبسوط دايماا وتكون أيامك الجايه أحلى من كل الي راح 💙
+            </p>
+
+            <p>
+                بتمنالك كل الخير وإن شاء الله تضلك دايمًا بخير وناجح
+                ومبسوط وتشوف نتيجة كل تعبك بالأشياء اللي بتفرحك.
+            </p>
+
+            <p>
+                المهم اليوم مسموحلك تنبسط وتاخد راحتك بدون كئابه
+                وتحكي مش فاضي وما في وقت لحالي
+                «اليوم هاد الك شاطر انتَ» 😭😭😂
+            </p>
+
+            <p>
+                كل عام وإنت بخير للمرة 7 يمكن بس يلا، وعقبال الـ100 سنه
+                مع إنو لسا بدنا نشوف إذا في أمل تعقل ولا خلص راحت عليك
+                «دعابه خليك هيك أحسن» 💀💙🎂
+            </p>
+
+            <p>
+                للمرة الأخيرة اليوم كل عام وانتَ بخير يا احسسسسن تشيييير
+                «ركز بمدحك كتير إنك أحسن تشير»
+                وأحسن مصور بالكوكب يلاااا عيششش 😁
+            </p>
+
+        </div>
+
+        <p class="birthday-signature">
+            صديقتك الصدوقه أحسن وحده بالكوكب ليان 😂💙
+        </p>
+
+    </div>
+
+
+</section>
+
+
+<div id="birthday-confetti"></div>
+
+<style>
+#birthday-confetti {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.confetti-piece {
+    position: absolute;
+    top: -20px;
+    width: 9px;
+    height: 14px;
+    opacity: 0;
+    animation: confettiFall 3s ease-out forwards;
+}
+
+@keyframes confettiFall {
+    0% {
+        transform: translateY(-10px) rotate(0deg);
+        opacity: 1;
+    }
+    85% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(105vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+</style>
+
+<script>
+function launchConfetti() {
+    const container = document.querySelector("#birthday-confetti");
+    if (!container) return;
+
+    container.innerHTML = "";
+
+    const colors = [
+        "#78C8E3",
+        "#ff3b4f",
+        "#FFC64F",
+        "#EAF4FA",
+        "#977DFF"
+    ];
+
+    for (let i = 0; i < 100; i++) {
+        const piece = document.createElement("span");
+        piece.className = "confetti-piece";
+        piece.style.left = Math.random() * 100 + "%";
+        piece.style.backgroundColor =
+            colors[Math.floor(Math.random() * colors.length)];
+
+        piece.style.animationDelay = Math.random() * 0.8 + "s";
+        piece.style.animationDuration = (2.5 + Math.random() * 1.5) + "s";
+
+        container.appendChild(piece);
+    }
+
+    setTimeout(() => {
+        container.innerHTML = "";
+    }, 5000);
+}
+</script>
+
+
+</body>
+</html>
